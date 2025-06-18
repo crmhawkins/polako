@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Models\Other;
+
+use App\Models\Traits\BelongsToCompany;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -9,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Priority extends Model
 {
+    use BelongsToCompany;
 
     protected $table = 'priority';
     public $timestamps = false;

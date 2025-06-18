@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Models\Maquinas;
+
+use App\Models\Traits\BelongsToCompany;
 
 use App\Models\Almacenes\Almacen;
 use App\Models\Clients\ClientLocal;
@@ -12,6 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Maquina extends Model
 {
+    use BelongsToCompany;
     use HasFactory, SoftDeletes;
 
     protected $table = 'maquinas';

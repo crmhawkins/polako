@@ -4,10 +4,13 @@ namespace App\Models\Accounting;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\BelongsToCompany;
 
 class EstadosDiario extends Model
 {
     use HasFactory;
+    use BelongsToCompany;
+
     public $timestamps = false;
 
      /**

@@ -71,6 +71,7 @@ use App\Http\Controllers\Users\PositionController;
 use App\Http\Controllers\Vehiculos\VehiculosController;
 use App\Http\Controllers\Neveras\NeverasController;
 use App\Http\Controllers\Avisos\AvisosController;
+use App\Http\Controllers\Company\CompanyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -106,6 +107,7 @@ Route::post('/user/alerts', [AlertController::class, 'getUserAlerts'])->name('us
 Route::post('/alert/update', [AlertController::class, 'updateStatusAlert'])->name('alert.update');
 Route::post('/alert/postpone', [AlertController::class, 'postpone'])->name('alert.postpone');
 
+Route::post('/empresa/seleccionar', [CompanyController::class, 'seleccionar'])->name('company.set');
 
 //Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -662,7 +664,7 @@ Route::post('/diario-caja/{id}/update', [DiarioCajaController::class, 'update'])
 Route::post('/diario-caja/{id}/destroy', [DiarioCajaController::class, 'destroy'])->name('diarioCaja.destroy');
 Route::post('/diario-caja/{id}/destroy-linea', [DiarioCajaController::class, 'destroyDiarioCaja'])->name('diarioCaja.destroyDiarioCaja');
 
-//Salones
+// SALONES
 Route::get('/salones', [SalonesController::class, 'index'])->name('salones.index');
 Route::get('/salones/create', [SalonesController::class, 'create'])->name('salones.create');
 Route::post('/salones/store', [SalonesController::class, 'store'])->name('salones.store');
@@ -670,6 +672,9 @@ Route::get('/salones/{id}/edit', [SalonesController::class, 'edit'])->name('salo
 Route::get('/salones/{id}/show', [SalonesController::class, 'show'])->name('salones.show');
 Route::post('/salones/{id}/update', [SalonesController::class, 'update'])->name('salones.update');
 Route::post('/salones/destroy', [SalonesController::class, 'destroy'])->name('salones.delete');
+
+
+
 
 //Almacenes
 Route::get('/almacenes', [AlmacenController::class, 'index'])->name('almacenes.index');
@@ -733,7 +738,7 @@ Route::get('/vehiculos/edit/{id}', [VehiculosController::class, 'edit'])->name('
 Route::post('/vehiculos/update/{id}', [VehiculosController::class, 'update'])->name('vehiculos.update');
 Route::post('/vehiculos/destroy', [VehiculosController::class, 'destroy'])->name('vehiculos.delete');
 
-//Neveras
+// NEVERAS
 Route::get('/neveras', [NeverasController::class, 'index'])->name('neveras.index');
 Route::get('/neveras/create', [NeverasController::class, 'create'])->name('neveras.create');
 Route::post('/neveras/store', [NeverasController::class, 'store'])->name('neveras.store');

@@ -10,11 +10,13 @@ use App\Models\Salones\Caja as Cabinas;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use App\Models\Traits\BelongsToCompany;
 class Almacen extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    // use BelongsToCompany;
+
 
     protected $table = 'almacenes';
 
@@ -26,6 +28,8 @@ class Almacen extends Model
     protected $fillable = [
         'nombre',
         'direccion',
+        'salon_id', // ✅ importante
+
 
     ];
 
@@ -42,5 +46,11 @@ class Almacen extends Model
     {
         return $this->hasMany(Maquina::class,'almacen_id');
     }
+
+    public function salon()
+{
+    return $this->belongsTo(\App\Models\Salones\Salon::class, 'salon_id');
+}
+
 
 }

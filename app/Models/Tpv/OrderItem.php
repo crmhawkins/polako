@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Models\Tpv;
+
+use App\Models\Traits\BelongsToCompany;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -9,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class OrderItem extends Model
 {
+    use BelongsToCompany;
     use HasFactory;
     use SoftDeletes;
 

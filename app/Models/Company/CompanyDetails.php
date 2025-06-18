@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Models\Company;
+
+use App\Models\Traits\BelongsToCompany;
 
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -8,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 class CompanyDetails extends Model
 {
+    // use BelongsToCompany;
 
     protected $table = 'company_details';
 

@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Models\CrmActivities;
+
+use App\Models\Traits\BelongsToCompany;
 
 use App\Models\Clients\Client;
 use App\Models\Other\ContactBy;
@@ -11,6 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class CrmActivitiesMeetings extends Model
 {
+    use BelongsToCompany;
     use HasFactory;
     use SoftDeletes;
 

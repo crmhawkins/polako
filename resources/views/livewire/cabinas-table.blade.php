@@ -69,7 +69,7 @@
                     @foreach ($cabinas as $cabina)
                         <tr>
                             <td class="px-3">{{ optional($cabina->salon)->nombre }}</td>
-                            <td>{{ $cabina->monto }}</td>
+                            <td>{{ number_format($cabina->monto, 2, ',', '.') }} €</td>
                             <td>{{ $cabina->fecha ? \Carbon\Carbon::parse($cabina->fecha)->format('Y-m-d H:i') : '' }}</td>
                             <td>{{ optional($cabina->usuario)->name }}</td>
                             <td class="flex flex-row justify-evenly align-middle" style="min-width: 50px">

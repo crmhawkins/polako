@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Models\Bajas;
+
+use App\Models\Traits\BelongsToCompany;
 
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Baja extends Model
 {
+    use BelongsToCompany;
 
     use SoftDeletes;
 

@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Models\Commercial;
+
+use App\Models\Traits\BelongsToCompany;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -8,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class CommercialLevel extends Model
 {
+    use BelongsToCompany;
     use HasFactory;
     use SoftDeletes;
 

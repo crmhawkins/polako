@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Models\Maquinas;
+
+use App\Models\Traits\BelongsToCompany;
 
 use App\Models\Clients\Client;
 use App\Models\Tpv\Caja;
@@ -12,6 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Recaudacion extends Model
 {
+    use BelongsToCompany;
     use HasFactory;
     use SoftDeletes;
 

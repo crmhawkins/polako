@@ -5,10 +5,12 @@ namespace App\Models\Accounting;
 use App\Models\Other\BankAccounts;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\Traits\BelongsToCompany;
 class Traspaso extends Model
 {
     use HasFactory;
+    use BelongsToCompany;
+
     protected $table = 'traspaso';
 
     protected $fillable = [

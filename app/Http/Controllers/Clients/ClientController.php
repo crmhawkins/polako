@@ -579,11 +579,20 @@ class ClientController extends Controller
     }
 
     public function verificarClienteExistente(Request $request)
-{
-    $clienteExistente = Client::where('name', $request->name)
-        ->orWhere('company', $request->company)
-        ->first();
+    {
+        $cliente = Client::where('name', $request->name)
+            ->orWhere('company', $request->company)
+            ->first();
 
-    return response()->json($clienteExistente);
-}
+        if ($cliente) {
+            return response()->json([
+                'exists' => true,
+                'name' => $cliente->name ?? 'No disponible',
+                'company' => $cliente->company ?? 'No disponible',
+            ]);
+        }
+
+        return response()->json(['exists' => false]);
+    }
+
 }

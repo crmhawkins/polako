@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Models\Dominios;
+
+use App\Models\Traits\BelongsToCompany;
 
 use App\Models\Clients\Client;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Dominio extends Model
 {
+    use BelongsToCompany;
     use HasFactory;
     use SoftDeletes;
 

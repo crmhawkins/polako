@@ -81,9 +81,9 @@
                             <td>{{$nevera->nombre}}</td>
                             <td>{{ \Carbon\Carbon::parse($nevera->fecha)->format('d/m/Y') }}</td>
                             <td>{{ \Carbon\Carbon::parse($nevera->hora)->format('H:i:s') }}</td>
-                            <td>{{$nevera->temperatura_actual}}</td>
-                            <td>{{$nevera->temperatura_maxima}}</td>
-                            <td>{{$nevera->temperatura_minima}}</td>
+                            <td>{{$nevera->temperatura_actual}} °C</td>
+                            <td>{{$nevera->temperatura_maxima}} °C</td>
+                            <td>{{$nevera->temperatura_minima}} °C</td>
                             <td class="flex flex-row justify-evenly align-middle" style="min-width: 120px">
                                 <a class="" href="{{route('neveras.edit', $nevera->id)}}"><img src="{{asset('assets/icons/edit.svg')}}" alt="Editar nevera"></a>
                                 <a class="delete" data-id="{{$nevera->id}}" href=""><img src="{{asset('assets/icons/trash.svg')}}" alt="Eliminar nevera"></a>

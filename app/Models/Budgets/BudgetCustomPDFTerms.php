@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Models\Budgets;
+
+use App\Models\Traits\BelongsToCompany;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -8,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class BudgetCustomPDFTerms extends Model
 {
+    use BelongsToCompany;
 
     protected $table = 'custom_pdf_budget_terms';
     public $timestamps = false;

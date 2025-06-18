@@ -122,6 +122,8 @@ class UserController extends Controller
         } while (User::where('pin', $pin)->exists());
 
         $data['pin'] = $pin;
+        $data['company_id'] = session('company_id');
+
         //dd($data);
         $usuarioCreado = User::create($data);
         $usuariovacaciones = Holidays::create([

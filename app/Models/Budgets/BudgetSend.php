@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Models\Budgets;
+
+use App\Models\Traits\BelongsToCompany;
 
 use App\Models\Clients\Client;
 use App\Models\Users\User;
@@ -10,6 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class BudgetSend extends Model
 {
+    use BelongsToCompany;
     use HasFactory;
 
     use SoftDeletes;

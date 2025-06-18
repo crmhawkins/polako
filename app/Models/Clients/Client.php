@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Models\Clients;
+
+use App\Models\Traits\BelongsToCompany;
 
 use App\Models\Invoices\Invoice;
 use App\Models\Projects\Project;
@@ -12,6 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Client extends Model
 {
+    // use BelongsToCompany;
     use HasFactory;
     use SoftDeletes;
 

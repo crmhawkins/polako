@@ -9,11 +9,13 @@ use App\Models\PurcharseOrde\PurcharseOrder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Traits\BelongsToCompany;
 
 class AssociatedExpenses extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use BelongsToCompany;
 
     protected $table = 'associated_expenses';
 

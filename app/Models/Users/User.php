@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Models\Users;
+
+use App\Models\Traits\BelongsToCompany;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
@@ -27,6 +28,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
+    // use BelongsToCompany;
     use HasApiTokens, HasFactory, Notifiable;
     use SoftDeletes;
 

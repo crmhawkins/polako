@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Models\Budgets;
+
+use App\Models\Traits\BelongsToCompany;
 
 use App\Models\Suppliers\Supplier;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class BudgetConceptSupplierRequest extends Model
 {
+    use BelongsToCompany;
     use HasFactory, SoftDeletes;
 
     protected $table = 'budget_concept_supplier_requests';

@@ -502,44 +502,104 @@
 <script>
     $(document).ready(function() {
         $('form').on('submit', function(e) {
-            e.preventDefault();
+    e.preventDefault();
 
-            var name = $('#name').val();
-            var company = $('#company').val();
-            var form = this;
+    const form = this;
+    limpiarErroresFormulario(form);
 
-            $.ajax({
-                url: '{{ route("cliente.verificarExistente") }}',
-                type: 'POST',
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    name: name,
-                    company: company
-                },
-                success: function(cliente) {
-                    if (cliente) {
-                        Swal.fire({
-                            title: 'Cliente existente',
-                            html: `Ya existe un cliente con este nombre o nombre de empresa.<br><br>
-                                   <strong>Nombre del contacto:</strong> ${cliente.name}<br>
-                                   <strong>Nombre de la empresa:</strong> ${cliente.company}<br><br>
-                                   ¿Estás seguro de que quieres crear uno nuevo?`,
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonText: 'Sí, crear nuevo',
-                            cancelButtonText: 'Cancelar'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                form.submit(); // Enviar el formulario si el usuario confirma
-                            }
-                        });
-                    } else {
-                        form.submit(); // No existe cliente con el mismo nombre, enviar el formulario
-                    }
-                }
-            });
-        });
+    let valido = true;
+
+    const campos = [
+        { id: 'name', mensaje: 'El nombre es obligatorio.' },
+        { id: 'activity', mensaje: 'La actividad es obligatoria.' },
+        { id: 'cif', mensaje: 'El CIF/DNI es obligatorio.' },
+        { id: 'email', mensaje: 'El email es obligatorio.' },
+        { id: 'company', mensaje: 'El nombre de la empresa es obligatorio.' },
+        { id: 'identifier', mensaje: 'La marca es obligatoria.' },
+        { id: 'city', mensaje: 'La ciudad es obligatoria.' },
+        { id: 'province', mensaje: 'La provincia es obligatoria.' },
+        { id: 'address', mensaje: 'La dirección es obligatoria.' },
+        { id: 'zipcode', mensaje: 'El código postal es obligatorio.' }
+    ];
+
+    campos.forEach(campo => {
+        const input = document.getElementById(campo.id);
+        if (!input.value.trim()) {
+            mostrarError(input, campo.mensaje);
+            valido = false;
+        }
     });
+
+    const esCliente = $('input[name="is_client"]:checked').val();
+    const tipoCliente = $('input[name="tipoCliente"]:checked').val();
+
+    if (!esCliente) {
+        mostrarError(document.querySelector('input[name="is_client"]'), 'Selecciona si es Lead o Cliente.');
+        valido = false;
+    }
+
+    if (!tipoCliente) {
+        mostrarError(document.querySelector('input[name="tipoCliente"]'), 'Selecciona el tipo de cliente.');
+        valido = false;
+    }
+
+    if (!valido) return; // No enviar si hay errores
+
+    // Luego AJAX para verificar cliente duplicado
+    $.ajax({
+        url: '{{ route("cliente.verificarExistente") }}',
+        type: 'POST',
+        data: {
+            _token: '{{ csrf_token() }}',
+            name: $('#name').val(),
+            company: $('#company').val()
+        },
+        success: function(response) {
+            if (response.exists) {
+                Swal.fire({
+                    title: 'Cliente existente',
+                    html: `
+                        Ya existe un cliente con este nombre o nombre de empresa.<br><br>
+                        <strong>Nombre del contacto:</strong> ${response.name}<br>
+                        <strong>Nombre de la empresa:</strong> ${response.company}<br><br>
+                        ¿Estás seguro de que quieres crear uno nuevo?`,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Sí, crear nuevo',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            } else {
+                form.submit();
+            }
+        }
+    });
+});
+
+    });
+
+    function mostrarError(input, mensaje) {
+        const formGroup = input.closest('.form-group');
+        input.classList.add('is-invalid');
+
+        // Quitar errores anteriores si existen
+        formGroup.querySelectorAll('.invalid-feedback')?.forEach(el => el.remove());
+
+        // Insertar mensaje
+        const div = document.createElement('div');
+        div.className = 'invalid-feedback';
+        div.innerText = mensaje;
+        formGroup.appendChild(div);
+    }
+
+    function limpiarErroresFormulario(form) {
+        form.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
+        form.querySelectorAll('.invalid-feedback').forEach(el => el.remove());
+    }
+
 </script>
 <script>
     $(document).ready(function() {

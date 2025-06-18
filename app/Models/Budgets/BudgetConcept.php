@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Models\Budgets;
+
+use App\Models\Traits\BelongsToCompany;
 
 use App\Models\PurcharseOrde\PurcharseOrder;
 use App\Models\Tasks\Task;
@@ -10,6 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class BudgetConcept extends Model
 {
+    use BelongsToCompany;
     use HasFactory, SoftDeletes;
 
     protected $table = 'budget_concepts';

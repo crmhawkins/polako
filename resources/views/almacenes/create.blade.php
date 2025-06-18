@@ -45,17 +45,18 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-sm-12 col-md-6">
-                                <div class="form-group mb-3">
-                                    <label for="direccion">Dirección:</label>
-                                    <input placeholder="Dirección del almacen" type="text" class="form-control @error('direccion') is-invalid @enderror" id="direccion" value="{{ old('direccion') }}" name="direccion">
-                                    @error('direccion')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
+                            <div class="mb-3">
+                                <label for="salon_id" class="form-label">Salón asociado</label>
+                                <select name="salon_id" id="salon_id" class="form-select" required>
+                                    <option value="">Seleccione un salón</option>
+                                    @foreach (\App\Models\Salones\Salon::all() as $salon)
+                                        <option value="{{ $salon->id }}" {{ old('salon_id', $almacen->salon_id ?? '') == $salon->id ? 'selected' : '' }}>
+                                            {{ $salon->nombre }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
+
                         </div>
                     </div>
                     <div class="form-group mt-5">

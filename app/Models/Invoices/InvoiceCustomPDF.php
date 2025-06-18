@@ -1,12 +1,14 @@
 <?php
-
 namespace App\Models\Budgets;
+
+use App\Models\Traits\BelongsToCompany;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Budgets\BudgetCustomPDFTerms;
 
 class InvoiceCustomPDF extends Model
 {
+    use BelongsToCompany;
 
     protected $table = 'custom_pdf_invoice';
 

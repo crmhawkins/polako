@@ -5,10 +5,11 @@ namespace App\Models\Alerts;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use App\Models\Traits\BelongsToCompany;
 
 class AlertStatus extends Model
 {
+    use BelongsToCompany;
 
     protected $table = 'alert_status';
     public $timestamps = false;

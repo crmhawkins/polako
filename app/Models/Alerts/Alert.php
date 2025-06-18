@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Alerts\AlertStatus;
 use App\Models\Alerts\Stage;
 use App\Models\Users\User;
-
+use App\Models\Traits\BelongsToCompany;
 class Alert extends Model
 {
     use SoftDeletes;
+    use BelongsToCompany;
 
     protected $table = 'alerts';
 

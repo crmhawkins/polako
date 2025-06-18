@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Models\Users;
+
+use App\Models\Traits\BelongsToCompany;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,6 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class UserDepartament extends Authenticatable
 {
+    // use BelongsToCompany;
     use HasApiTokens, HasFactory, Notifiable ,SoftDeletes;
 
 

@@ -1,9 +1,30 @@
 <nav id="topbar" class="navbar">
+
+    @if (App\Models\Company\CompanyDetails::count() >= 1)
+        <form action="{{ route('company.set') }}" method="POST" class="row align-items-center mb-0">
+            @csrf
+
+            <div class="col-auto">
+                <label for="company_id" class="form-label mb-0">Seleccione la Empresa</label>
+            </div>
+
+            <div class="col">
+                <select id="company_id" name="company_id" onchange="this.form.submit()" class="form-select form-select-sm" style="    min-width: 130px;">
+                    @foreach (App\Models\Company\CompanyDetails::all() as $empresa)
+                        <option value="{{ $empresa->id }}" {{ session('company_id') == $empresa->id ? 'selected' : '' }}>
+                            {{ $empresa->company_name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+        </form>
+    @endif
     <header class="top-burguer">
         <a href="#" class="burger-btn d-block d-lg-none">
             <i class="bi bi-list"></i>
         </a>
     </header>
+
     <ul class="topbar-menu d-flex align-items-center gap-3">
         <li class="dropdown notification-list">
             <a href="{{ route('admin.emailConfig.settings') }}" type="button" class="nav-link position-relative">

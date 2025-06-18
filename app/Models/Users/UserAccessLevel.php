@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Models\Users;
+
+use App\Models\Traits\BelongsToCompany;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,6 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class UserAccessLevel extends Authenticatable
 {
+    // use BelongsToCompany;
     use HasApiTokens, HasFactory, Notifiable;
 
 

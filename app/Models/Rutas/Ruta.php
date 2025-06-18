@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Models\Rutas;
+
+use App\Models\Traits\BelongsToCompany;
 
 use App\Models\Clients\Client;
 use App\Models\Clients\ClientLocal;
@@ -14,6 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Ruta extends Model
 {
+    use BelongsToCompany;
     use HasFactory;
     use SoftDeletes;
 

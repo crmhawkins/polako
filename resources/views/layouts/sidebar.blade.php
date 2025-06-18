@@ -1,3 +1,4 @@
+
 <div id="sidebar" class="active">
     <div class="sidebar-wrapper active">
         <div class="sidebar-header">
@@ -60,18 +61,19 @@
                     $gestor = (Auth::user()->access_level_id == 4);
                     $personal = (Auth::user()->access_level_id == 5);
                     $comercial = (Auth::user()->access_level_id == 6);
-                    @endphp
+                @endphp
 
-                    <li class="sidebar-item has-sub ">
+                    <li class="sidebar-item has-sub {{ $SalonesActive ? 'expanded' : '' }}">
                         <a href="#" class='sidebar-link'>
-                            <i class="fa-solid fa-house fs-5"></i>
-                            <span>SALONES</span>
+                            <i class="fa-solid fa-building fs-5"></i>
+                            {{-- <i class="fa-solid fa-house fs-5"></i> --}}
+                            <span>ADMINISTRACION</span>
                         </a>
                         <ul class="submenu" style="{{ ($contenedorSalonesActive) ? 'display:block;' : 'display:none' }}">
-                            <li class="sidebar-item is_sub has-sub {{ $SalonesActive ? 'active' : '' }}">
-                                <a href="#" class='sidebar-link'>
+                            <li class="sidebar-item is_sub has-sub {{ $SalonesActive ? 'expanded-child' : '' }}">
+                                <a href="#" class='sidebar-link {{ $SalonesActive ? 'expanded-link' : '' }}'>
                                     <i class="fa-solid fa-house fs-5"></i>
-                                    <span>Salones</span>
+                                    <span>SALONES</span>
                                 </a>
                                 <ul class="submenu" style="{{ $SalonesActive ? 'display:block;' : 'display:none' }}">
                                     <li class="submenu-item {{ request()->routeIs('salones.index') ? 'active' : '' }} ">
@@ -94,8 +96,9 @@
                             </li>
                             <li class="sidebar-item is_sub has-sub {{ $controlTemperaturaActive ? 'active' : '' }}">
                                 <a href="#" class='sidebar-link'>
-                                    <i class="fa-solid fa-clipboard-list fs-5"></i>
-                                    <span>Control de temperaturas</span>
+                                    {{-- <i class="fa-solid fa-temperature-three-quarters"></i> --}}
+                                    <i class="fa-solid fa-temperature-low fs-5"></i>
+                                    <span>CONTROL DE TEMPERATURAS</span>
                                 </a>
                                 <ul class="submenu" style="{{ $controlTemperaturaActive ? 'display:block;' : 'display:none' }}">
                                     <li class="submenu-item {{ request()->routeIs('neveras.index') ? 'active' : '' }} ">
@@ -118,14 +121,15 @@
                             </li>
                             <li class="sidebar-item is_sub {{ request()->routeIs('cabinas.index') ? 'active' : '' }}">
                                 <a href="{{route('cabinas.index')}}" class='sidebar-link hasnt_sub'>
-                                    <i class="fa-solid fa-file-invoice-dollar fs-5"></i>
-                                    <span>Cabinas</span>
+                                    {{-- <i class="fa-solid fa-file-invoice-dollar fs-5"></i> --}}
+                                    <i class="fa-solid fa-building-shield fs-5"></i>
+                                    <span>CABINAS</span>
                                 </a>
                             </li>
                             <li class="sidebar-item is_sub has-sub {{ $productosActive ? 'active' : '' }}">
                                 <a href="#" class='sidebar-link'>
                                     <i class="fa-solid fa-cash-register fs-5"></i>
-                                    <span>Productos TPV</span>
+                                    <span>PRODUCTOS TPV</span>
                                 </a>
                                 <ul class="submenu" style="{{ $productosActive ? 'display:block;' : 'display:none;' }}">
                                     <li class="submenu-item {{ request()->routeIs('productos.index') ? 'active' : '' }}">
@@ -164,8 +168,9 @@
                             </li>
                             <li class="sidebar-item is_sub has-sub {{ $AlmacenesActive ? 'active' : '' }}">
                                 <a href="#" class='sidebar-link'>
-                                    <i class="fa-solid fa-house fs-5"></i>
-                                    <span>Almacenes</span>
+                                    <i class="fa-solid fa-shop-lock fs-5"></i>
+                                    {{-- <i class="fa-solid fa-house fs-5"></i> --}}
+                                    <span>ALMACENES</span>
                                 </a>
                                 <ul class="submenu" style="{{ $AlmacenesActive ? 'display:block;' : 'display:none' }}">
                                     <li class="submenu-item {{ request()->routeIs('almacenes.index') ? 'active' : '' }} ">
@@ -188,8 +193,9 @@
                             </li>
                             <li class="sidebar-item is_sub has-sub {{ $maquinasActive ? 'active' : '' }}">
                                 <a href="#" class='sidebar-link'>
-                                    <i class="fa-solid fa-sliders fs-5"></i>
-                                    <span>Maquinas</span>
+                                    <i class="fa-solid fa-circle-dollar-to-slot fs-5"></i>
+                                    {{-- <i class="fa-solid fa-sliders fs-5"></i> --}}
+                                    <span>MAQUINAS</span>
                                 </a>
                                 <ul class="submenu" style="{{ $maquinasActive ? 'display:block;' : 'display:none;' }}">
                                     <li class="submenu-item {{ request()->routeIs('maquinas.index') ? 'active' : '' }}">
@@ -262,7 +268,7 @@
                                 <a href="#" class='sidebar-link'>
                                     <i class="fa-solid fa-file-invoice-dollar fs-5"></i>
 
-                                    <span>Presupuestos</span>
+                                    <span>Propuestas</span>
                                 </a>
                                 <ul class="submenu" style="{{ $presupuestoActive ? 'display:block;' : 'display:none;' }}">
                                     <li class="submenu-item {{ request()->routeIs('presupuestos.index') ? 'active' : '' }}">

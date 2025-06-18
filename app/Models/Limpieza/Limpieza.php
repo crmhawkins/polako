@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Models\Limpieza;
+
+use App\Models\Traits\BelongsToCompany;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -9,6 +10,7 @@ use App\Models\Users\User;
 
 class Limpieza extends Model
 {
+    use BelongsToCompany;
     use SoftDeletes;
 
     protected $table = 'limpieza';

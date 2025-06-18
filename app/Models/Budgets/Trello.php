@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Models\Budgets;
+
+use App\Models\Traits\BelongsToCompany;
 
 use App\Models\Users\User;
 use Illuminate\Database\Eloquent\Model;
@@ -8,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Trello extends Model
 {
+    use BelongsToCompany;
     use SoftDeletes;
 
     protected $table = 'trello_config_user';

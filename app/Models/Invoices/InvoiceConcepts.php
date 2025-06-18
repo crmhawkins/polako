@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Models\Invoices;
+
+use App\Models\Traits\BelongsToCompany;
 
 use App\Models\Budgets\BudgetConceptType;
 use App\Models\Services\Service;
@@ -11,6 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class InvoiceConcepts extends Model
 {
+    use BelongsToCompany;
     use HasFactory;
     use SoftDeletes;
 

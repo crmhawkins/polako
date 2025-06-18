@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Models\Neveras;
+
+use App\Models\Traits\BelongsToCompany;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -8,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Neveras extends Model
 {
+    // use BelongsToCompany;
     use HasFactory, SoftDeletes;
 
     protected $table = 'control_temperatura';

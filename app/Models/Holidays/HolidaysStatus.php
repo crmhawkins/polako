@@ -1,12 +1,14 @@
 <?php
-
 namespace App\Models\Holidays;
+
+use App\Models\Traits\BelongsToCompany;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class HolidaysStatus extends Model
 {
+    use BelongsToCompany;
     use HasFactory;
     /**
      * USER HOLIDAYS - ESTADO DE VACACIONES

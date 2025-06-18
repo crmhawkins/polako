@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Models\Llamadas;
+
+use App\Models\Traits\BelongsToCompany;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -8,6 +9,7 @@ use Carbon\Carbon;
 
 class Llamada extends Model
 {
+    use BelongsToCompany;
     use HasFactory;
 
     protected $fillable = [

@@ -1,14 +1,16 @@
 <?php
-
 namespace App\Models\Invoices;
+
+use App\Models\Traits\BelongsToCompany;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class InvoiceStatus extends Model
 {
+    // use BelongsToCompany;
     use HasFactory;
-    
+
     protected $table = 'invoice_status';
     public $timestamps = false;
 
@@ -33,14 +35,14 @@ class InvoiceStatus extends Model
      * @var string
      */
     const INVOICE_STATUS_NOT_PAID = "No cobrada";
-    
+
     /**
      * ESTADO: Cobrada
      *
      * @var string
      */
     const INVOICE_STATUS_PAID = "Cobrada";
-    
+
     /**
      * ESTADO: Cobrada parcialmente
      *

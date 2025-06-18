@@ -25,5 +25,11 @@ class AppServiceProvider extends ServiceProvider
         view()->share('isActive', function ($routePattern) {
             return Route::currentRouteNamed($routePattern) ? 'active' : '';
         });
+
+        view()->composer('*', function ($view) {
+            if (!session()->has('company_id')) {
+                session(['company_id' => 1]); // o mostrar una vista de selección
+            }
+        });
     }
 }

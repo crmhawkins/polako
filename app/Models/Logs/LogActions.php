@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Models\Logs;
+
+use App\Models\Traits\BelongsToCompany;
 
 use App\Models\KitDigital;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class LogActions extends Model
 {
+    use BelongsToCompany;
     use HasFactory;
     use SoftDeletes;
 

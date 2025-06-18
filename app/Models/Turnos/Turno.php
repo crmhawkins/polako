@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Models\Turnos;
+
+use App\Models\Traits\BelongsToCompany;
 
 use App\Models\Salones\Salon;
 use App\Models\Users\User;
@@ -11,6 +12,7 @@ use phpseclib3\Crypt\EC\Formats\Keys\libsodium;
 
 class Turno extends Model
 {
+    use BelongsToCompany;
     use HasFactory;
     use SoftDeletes;
 

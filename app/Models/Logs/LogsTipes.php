@@ -1,12 +1,14 @@
 <?php
-
 namespace App\Models\Logs;
+
+use App\Models\Traits\BelongsToCompany;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class LogsTipes extends Model
 {
+    use BelongsToCompany;
     use HasFactory;
 
     protected $table = 'logs_tipes';

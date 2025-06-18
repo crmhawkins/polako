@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Models\Users;
+
+use App\Models\Traits\BelongsToCompany;
 
 use App\Models\Clients\Client;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -8,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ClientUserOrder extends Model
 {
+    use BelongsToCompany;
     use HasFactory;
     protected $fillable = ['user_id', 'client_id', 'order'];
 

@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Models\Events;
+
+use App\Models\Traits\BelongsToCompany;
 
 use App\Models\Budgets\Budget;
 use App\Models\Clients\Client;
@@ -13,6 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Event extends Model
 {
+    use BelongsToCompany;
     use HasFactory;
     use SoftDeletes;
 

@@ -12,6 +12,7 @@ use App\Models\Company\CompanyDetails;
 use App\Models\Invoices\Invoice;
 use App\Models\Invoices\InvoiceConcepts;
 use App\Models\Invoices\InvoiceStatus;
+use App\Models\PaymentMethods\PaymentMethod;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -38,6 +39,92 @@ class InvoiceController extends Controller
 
         return view('invoices.edit', compact( 'factura', 'invoiceStatuses', 'invoice_concepts'));
     }
+
+    public function create()
+    {
+        $clientes = Client::all();
+        $presupuestos = Budget::all(); // Si aplican
+        $empresa = CompanyDetails::first();
+        $estados = InvoiceStatus::all();
+        $campanias = null;
+        $gestores = [];
+
+        return view('invoices.create', [
+            'clientes' => Client::all(),
+            'estados' => InvoiceStatus::all(),
+            'metodosPago' => PaymentMethod::all(),
+        ]);
+
+
+        return view('invoices.create', compact('clientes', 'presupuestos', 'empresa', 'estados','campanias','gestores'));
+    }
+
+    public function store(Request $request)
+    {
+        // Validación del formulario
+        $validatedData = $request->validate([
+            'reference' => 'required|string|max:255|unique:invoices,reference',
+            'client_id' => 'required|exists:clients,id',
+            'invoice_status_id' => 'required|exists:invoice_status,id',
+            'payment_method_id' => 'required|exists:payment_methods,id',
+            'concept' => 'nullable|string',
+            'description' => 'nullable|string',
+            'creation_date' => 'nullable|date',
+            'expiration_date' => 'nullable|date|after_or_equal:creation_date',
+            'gross' => 'nullable|numeric',
+            'base' => 'nullable|numeric',
+            'iva' => 'nullable|numeric',
+            'iva_percentage' => 'nullable|numeric',
+            'discount' => 'nullable|numeric',
+            'discount_percentage' => 'nullable|numeric',
+            'total' => 'required|numeric',
+            'note' => 'nullable|string',
+            'observations' => 'nullable|string',
+            'show_summary' => 'nullable|boolean',
+            'invoice_concepts' => 'required|array',
+            'invoice_concepts.*.title' => 'required|string|max:255',
+            'invoice_concepts.*.units' => 'required|numeric|min:1',
+            'invoice_concepts.*.total' => 'required|numeric|min:0',
+        ]);
+
+        // Crear la factura
+        $invoice = Invoice::create([
+            'reference' => $validatedData['reference'],
+            'admin_user_id' => auth()->id(),
+            'client_id' => $validatedData['client_id'],
+            'invoice_status_id' => $validatedData['invoice_status_id'],
+            'payment_method_id' => $validatedData['payment_method_id'],
+            'concept' => $validatedData['concept'] ?? null,
+            'description' => $validatedData['description'] ?? null,
+            'gross' => $validatedData['gross'] ?? 0,
+            'base' => $validatedData['base'] ?? 0,
+            'iva' => $validatedData['iva'] ?? 0,
+            'iva_percentage' => $validatedData['iva_percentage'] ?? 21,
+            'discount' => $validatedData['discount'] ?? 0,
+            'discount_percentage' => $validatedData['discount_percentage'] ?? 0,
+            'total' => $validatedData['total'],
+            'note' => $validatedData['note'] ?? null,
+            'observations' => $validatedData['observations'] ?? null,
+            'expiration_date' => $validatedData['expiration_date'] ?? null,
+            'show_summary' => $validatedData['show_summary'] ?? 0,
+        ]);
+
+        // Crear los conceptos asociados
+        foreach ($validatedData['invoice_concepts'] as $concept) {
+            $invoice->invoiceConcepts()->create([
+                'title' => $concept['title'],
+                'units' => $concept['units'],
+                'total' => $concept['total'],
+                // Agrega aquí otros campos si existen (sale_price, discount, etc.)
+            ]);
+        }
+
+        return redirect()->route('facturas.index')->with('toast', [
+            'icon' => 'success',
+            'mensaje' => 'Factura creada correctamente.'
+        ]);
+    }
+
 
     public function cobrarFactura(Request $request)
     {
@@ -252,8 +339,6 @@ class InvoiceController extends Controller
         // Descargar el archivo ZIP
         return response()->download($zipFilePath)->deleteFileAfterSend(true);
     }
-
-
 
     public function rectificateInvoice(Request $request){
         $invoice = Invoice::find($request->id);

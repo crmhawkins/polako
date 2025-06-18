@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Models\PurcharseOrde;
+
+use App\Models\Traits\BelongsToCompany;
 
 use App\Models\Clients\Client;
 use App\Models\PaymentMethods\PaymentMethod;
@@ -11,6 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PurcharseOrder extends Model
 {
+    use BelongsToCompany;
     use HasFactory;
     use SoftDeletes;
 

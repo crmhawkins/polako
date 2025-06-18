@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Models\Tasks;
+
+use App\Models\Traits\BelongsToCompany;
 
 use Carbon\CarbonInterval;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class Task extends Model
 {
+    use BelongsToCompany;
     use HasFactory;
     use SoftDeletes;
 

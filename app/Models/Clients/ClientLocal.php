@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Models\Clients;
+
+use App\Models\Traits\BelongsToCompany;
 
 use App\Models\Maquinas\Maquina;
 use App\Models\Rutas\Ruta;
@@ -10,6 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ClientLocal extends Model
 {
+    use BelongsToCompany;
     use HasFactory;
     use SoftDeletes;
 

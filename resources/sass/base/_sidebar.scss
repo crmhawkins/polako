@@ -66,14 +66,14 @@
     border-radius: 0;
     transition: all .5s;
     text-decoration: none;
-    color: $gris-claro;
+    color: $color-1;
     font-weight: 400;
 }
 .sidebar-wrapper .menu .sidebar-link span {
   margin-left: 1rem;
 }
 .sidebar-wrapper .menu .sidebar-link i, .sidebar-wrapper .menu .sidebar-link svg {
-  color: $gris-claro;
+  color: $color-1;
 }
 
 .sidebar-wrapper {
@@ -82,7 +82,7 @@
         &:hover {
           background-color: transparent;
           color: #109bb3;
-  
+
           i,
           svg {
             color: #109bb3;
@@ -116,7 +116,7 @@
 .sidebar-wrapper {
   .menu {
     .submenu-item
-    a 
+    a
     {
       &:hover {
         background-color: transparent;
@@ -164,4 +164,50 @@
   }
 }
 
-  
+
+
+
+
+.expanded>a {
+    background-color: $color-3;
+    color: white !important;
+    border-radius: 10px !important;
+}
+.expanded>a>i, .expanded>a::after {
+    color: white !important;
+}
+.expanded>a:hover {
+    background-color: $muted !important;
+    color: white !important;
+}
+
+.expanded-child>a {
+    background-color: $color-2;
+    color: white !important;
+    border-radius: 10px !important;
+    margin-bottom: 8px;
+
+}
+.expanded-child>a>i {
+    color: white !important;
+}
+.active>a {
+    background-color: $color-1;
+    color: white !important;
+    border-radius: 10px !important;
+}
+.active>a:hover {
+    background-color: $muted !important;
+}
+.expanded-child>a:hover {
+    background-color: $muted !important;
+    color: white !important;
+}
+
+.active>a:hover>i {
+    color: white !important;
+}
+
+.sidebar ol, ul{
+    padding-left:0 ;
+}

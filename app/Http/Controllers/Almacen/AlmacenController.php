@@ -29,16 +29,18 @@ class AlmacenController extends Controller
         // Validamos los campos
         $data =  $this->validate($request, [
             'nombre' => 'required|max:200',
-            'direccion' => 'required',
+            'salon_id' => 'required|exists:salones,id', // ✅ Añadido
 
 
         ], [
             'nombre.required' => 'El nombre es requerido para continuar',
-            'direccion.required' => 'La dirrección es requerida para continuar',
+            'salon_id.required' => 'Debe seleccionar un salón válido',
 
         ]);
 
         // $data = $request->all();
+        $salon = \App\Models\Salones\Salon::findOrFail($request->salon_id);
+        $data['direccion'] = $salon->direccion;
 
         $crearDominio = Almacen::create($data);
 
@@ -65,12 +67,14 @@ class AlmacenController extends Controller
         // Validamos los campos
         $data =  $this->validate($request, [
             'nombre' => 'required|max:200',
-            'direccion' => 'required',
+            'salon_id' => 'required|exists:salones,id', // ✅ Añadido
         ], [
             'nombre.required' => 'El nombre es requerido para continuar',
-            'direccion.required' => 'La dirrección es requerida para continuar',
+            'salon_id.required' => 'Debe seleccionar un salón válido',
         ]);
 
+        $salon = \App\Models\Salones\Salon::findOrFail($request->salon_id);
+        $data['direccion'] = $salon->direccion;
         $salonSaved=$almacen->update(attributes: $data);
 
         if (!$salonSaved) {

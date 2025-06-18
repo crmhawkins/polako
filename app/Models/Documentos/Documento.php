@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Models\Documentos;
+
+use App\Models\Traits\BelongsToCompany;
 
 use App\Models\Salones\Salon;
 use App\Models\Users\User;
@@ -10,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Documento extends Model
 {
+    use BelongsToCompany;
     use HasFactory;
     use SoftDeletes;
 

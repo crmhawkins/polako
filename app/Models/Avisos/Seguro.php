@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Salones\Salon;
 use App\Models\Suppliers\Supplier;
 use App\Models\Users\User;
+use App\Models\Traits\BelongsToCompany;
 
 class Seguro extends Model
 {
     use SoftDeletes;
+    use BelongsToCompany;
 
     protected $table = 'seguro';
 
